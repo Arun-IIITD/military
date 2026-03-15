@@ -1,0 +1,62 @@
+.transfers-container{
+margin-left:240px;
+padding:30px;
+font-family:Arial, sans-serif;
+}
+
+.transfers-title{
+margin-bottom:20px;
+}
+
+.transfer-form{
+display:flex;
+gap:10px;
+margin-bottom:25px;
+}
+
+.transfer-form input{
+padding:8px 10px;
+border:1px solid #ccc;
+border-radius:5px;
+outline:none;
+}
+
+.transfer-form input:focus{
+border-color:#2563eb;
+}
+
+.transfer-form button{
+background:#2563eb;
+color:white;
+border:none;
+padding:8px 14px;
+border-radius:5px;
+cursor:pointer;
+}
+
+.transfer-form button:hover{
+background:#1d4ed8;
+}
+
+.transfer-table{
+width:100%;
+border-collapse:collapse;
+background:white;
+box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+.transfer-table th{
+background:#1f2937;
+color:white;
+padding:10px;
+text-align:left;
+}
+
+.transfer-table td{
+padding:10px;
+border-bottom:1px solid #ddd;
+}
+
+.transfer-table tr:hover{
+background:#f3f4f6;
+}
