@@ -1,5 +1,5 @@
 //const API = "http://localhost:5000";
-const API = "https://military-9y5d.onrender.com"
+const API = "http://military-9y5d.onrender.com"
 
 export const login = async (data) => {
   const res = await fetch(`${API}/auth/login`, {
