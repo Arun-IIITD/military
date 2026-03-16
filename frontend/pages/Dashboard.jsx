@@ -9,7 +9,7 @@ export default function Dashboard() {
   const token = localStorage.getItem("token");
   const name = localStorage.getItem("name");
   const role = localStorage.getItem("role");
-  const base = localStorage.getItem("base")
+  //const base = localStorage.getItem("base")
 
   useEffect(() => {
     getDashboard(token).then(setData);
@@ -24,7 +24,7 @@ export default function Dashboard() {
       <img src = {logo} alt ="logo" />
       <h2>Welcome {name}</h2>
       <p>Role: {role}</p>
-      <p>{base}</p>
+      {/* <p>{base}</p> */}
 
 
       <div className="dashboard-grid">

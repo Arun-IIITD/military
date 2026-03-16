@@ -26,7 +26,7 @@ setForm({...form,[e.target.name]:e.target.value});
 
 const submit = async()=>{
 await postData("assignments",form,token);
-alert("Assigned");
+alert("Task Assigned");
 const data = await getData("assignments",token);
 setList(data);
 
@@ -48,7 +48,7 @@ return(
 <div className="assignment-form">
 
 <input
-placeholder="Personnel"
+placeholder="Assigned person"
 onChange={e=>setForm({...form,personnel:e.target.value})}
 />
 
@@ -83,23 +83,24 @@ onChange={e=>setForm({...form,personnel:e.target.value})}
           <option value="Hyderabad">Hyderabad</option>
         </select> 
 
-<input //QUANTITY
-name="quantity"
-placeholder="Quantity"
-value={form.quantity}
-onChange={e=>setForm({...form,quantity:e.target.value})}
-/>
+        <input //QUANTITY
+        name="quantity"
+        placeholder="Quantity"
+        value={form.quantity}
+        onChange={e=>setForm({...form,quantity:e.target.value})}
+        />
 
 <button onClick={submit}>Assign</button>
 
 </div>
+   <p> Assignment History</p>
 
 <table className="assignment-table">
 
 <thead>
 <tr>
 <th>Date</th>
-<th>Personnel</th>
+<th>Assigned person</th>
 <th>Base</th>
 <th>Equipment</th>
 <th>Qty</th>

@@ -29,7 +29,7 @@ setForm({...form,[e.target.name]:e.target.value});
 const submit = async()=>{
   await postData("expenditure",form,token)
   alert("new record added in expenditure")
-  const data = await getData("purchase",token);
+  const data = await getData("expenditure",token);
 setList(data);
 
 // clear form
@@ -83,9 +83,14 @@ return(
         </select> 
 
         <input
-        placeholder="Quantity"
-        onChange={e=>setForm({...form,quantity:e.target.value})}
-        />
+      type="number"
+      name="quantity"
+      placeholder="Quantity"
+      value={form.quantity}
+      onChange={handleChange}
+      />
+
+            
 
   
 
@@ -93,7 +98,7 @@ return(
 
     </div>
 
-      <p>History</p>
+      <p> Expenditure History</p>
 
     <table className="expenditure-table">
 

@@ -8,8 +8,7 @@ const loggerMiddleware = require("./middlewares/loggerMiddleware");
 app.use(express.json());
 app.use(cors({origin: "*"}));
 
-
-
+app.use(loggerMiddleware)
 const uri = process.env.MONGO_URI;
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("Connected to MongoDB Atlas!"))
@@ -23,7 +22,7 @@ app.use("/expenditure", require("./routes/expenditureRoutes"));
 app.use("/dashboard", require("./routes/dashboardRoutes"));
 
 app.get("/",(req,resp) => {
-  resp.send("welcome to military base")
+  resp.send("welcome to military bases")
 })
 
 const PORT = process.env.PORT || 3000;

@@ -39,10 +39,9 @@ const handleSubmit = async (e) => {
     }
 
     alert("Registered successfully");
-
-    localStorage.setItem("token", res.token);
-
+    console.log("Redirecting...");
     navigate("/login");
+    window.location.reload();
 
   } catch (err) {
     const errorMessage =
