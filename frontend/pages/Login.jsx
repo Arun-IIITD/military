@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import "./login.css";
 
 const Login = () => {
-
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
@@ -12,28 +11,38 @@ const Login = () => {
     password: ""
   });
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
+const handleLogin = async (e) => {
+  e.preventDefault();
 
-    try {
-      const res = await login(form);
+  try {
+    const res = await login(form);
 
-      //localStorage.setItem("token", res.data.token);
+    // check if token exists
+    if (res && res.token) {
       localStorage.setItem("token", res.token);
-
+      localStorage.setItem("name", res.user.name);
+      localStorage.setItem("role", res.user.role);
+      localStorage.setItem("base",res.user.base)
+      alert("Login successful");
       navigate("/dashboard");
-
-    } catch (err) {
-      alert("Login failed");
+      window.location.reload();
+    } else {
+      alert(res.message || "Invalid email or password");
     }
-  };
+
+  } catch (err) {
+    alert(err.response?.data?.message || "Login failed");
+  }
+};
 
   return (
     <div className="login-container">
+     
+
 
       <form className="login-form" onSubmit={handleLogin}>
 
-        <h2>Login</h2>
+        <h2>Military Login System</h2>
 
         <input
           type="email"

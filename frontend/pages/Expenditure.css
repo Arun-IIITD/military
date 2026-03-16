@@ -4,6 +4,11 @@ padding:30px;
 font-family:Arial, sans-serif;
 }
 
+img {
+  width:120px;
+  height:auto;
+}
+
 .expenditure-title{
 margin-bottom:20px;
 }
@@ -59,4 +64,73 @@ border-bottom:1px solid #ddd;
 
 .expenditure-table tr:hover{
 background:#f3f4f6;
+}
+
+
+/* Tablet */
+@media (max-width:1024px){
+
+  .expenditure-container{
+    margin-left:200px;
+    padding:20px;
+  }
+
+  .expenditure-form{
+    flex-wrap:wrap;
+  }
+
+  .expenditure-form input{
+    flex:1 1 45%;
+  }
+
+}
+
+/* Mobile */
+@media (max-width:768px){
+
+  .expenditure-container{
+    margin-left:160px;
+    padding:15px;
+  }
+
+  img{
+    width:90px;
+  }
+
+  .expenditure-form{
+    flex-direction:column;
+  }
+
+  .expenditure-form input{
+    width:100%;
+  }
+
+  .expenditure-form button{
+    width:100%;
+  }
+
+  .expenditure-table{
+    font-size:14px;
+  }
+
+  .expenditure-table th,
+  .expenditure-table td{
+    padding:8px;
+  }
+
+}
+
+/* Small phones */
+@media (max-width:480px){
+
+  .expenditure-container{
+    margin-left:0;
+  }
+
+  .expenditure-table{
+    display:block;
+    overflow-x:auto;
+    white-space:nowrap;
+  }
+
 }

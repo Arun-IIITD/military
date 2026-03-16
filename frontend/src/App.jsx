@@ -22,7 +22,7 @@ if(!token){
         <Route path="/" element={<Login/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/register" element={<Register/>}/>
-        
+        {/* <Route path="*" element={<Login/>}/> */}
     </Routes>
     </BrowserRouter>
     )
@@ -46,7 +46,7 @@ return(
                     <Route path="/transfers" element={<Transfers/>}/>
                     <Route path="/assignments" element={<Assignments/>}/>
                     <Route path="/expenditure" element={<Expenditure/>}/>
-
+                   
                     </Routes>
 
                     </div>

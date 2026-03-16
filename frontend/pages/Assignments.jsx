@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { getData, postData } from "../services/api";
 import "./Assignments.css";
+import logo from "../src/assets/mili.png";
 
 export default function Assignments(){
 
@@ -42,8 +43,7 @@ quantity:""
 return(
 
 <div className="assignments-container">
-
-<h2 className="assignments-title">Assignments</h2>
+  <img src = {logo} alt ="logo" />
 
 <div className="assignment-form">
 

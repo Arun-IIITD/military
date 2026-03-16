@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getData, postData } from "../services/api";
 import "./purchase.css"
+import logo from "../src/assets/mili.png";
 
 export default function Purchases(){
 
@@ -41,9 +42,11 @@ quantity:""
 return(
 
 <div className="purchases-container">
+  <img src = {logo} alt ="logo" />
 
     {/* <h2>Purchases</h2> */}
         <div className="purchase-form">
+          
 
 
             {/* <select

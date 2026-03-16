@@ -1,27 +1,39 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
-const Base = require("../models/Base")
-const bcrypt = require("bcrypt")
+const Base = require("../models/Base");
+const bcrypt = require("bcrypt");
 
 exports.register = async (req, res) => {
 
   try {
 
     const { name, email, password, role, base } = req.body;
+    //console.log("reg",password)
 
-    // find base document
-    const baseDoc = await Base.findOne({ name: base });
-
-    if (!baseDoc) {
-    return res.status(400).json({ message: "Invalid base selected" });
-    }
-
-    // check if user already exists
     const existingUser = await User.findOne({ email });
 
     if (existingUser) {
       return res.status(400).json({ message: "User already exists" });
     }
+
+    let baseId = null;
+    if (role === "BASE_COMMANDER") {
+
+      if (!base) {
+        return res.status(400).json({ message: "Base is required for BASE_COMMANDER" });
+      }
+
+      const baseDoc = await Base.findOne({ name: base });
+
+      if (!baseDoc) {
+        return res.status(400).json({ message: "Invalid base selected" });
+      }
+
+      baseId = baseDoc._id;
+    }
+
+  
+    // const hashedPassword = await bcrypt.hash(password, 10);
 
     // create new user
     const user = new User({
@@ -29,7 +41,7 @@ exports.register = async (req, res) => {
       email,
       password,
       role,
-      base: baseDoc._id
+      base: baseId
     });
 
     await user.save();
@@ -39,9 +51,9 @@ exports.register = async (req, res) => {
     });
 
   } catch (error) {
-    console.log("in reg controller",error)
+    //console.log("in reg controller", error);
     res.status(500).json({
-      message: "Serveeer error"
+      message: "Server error"
     });
   }
 };
@@ -51,25 +63,26 @@ exports.login = async (req, res) => {
   try {
 
     const { email, password } = req.body;
+    //console.log("login",password)
 
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }).populate("base");
 
     if (!user) {
       return res.status(401).json({ message: "Invalid email" });
     }
 
-    // if (user.password !== password) {
-    //   return res.status(401).json({ message: "Invalid password" });
-    // }
+    //console.log("Entered password:", password);
+    //console.log("Stored hash:", user.password);
+    const isMatch = await bcrypt.compare(password, user.password);
 
-     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(401).json({ message: "Invalid password" });
     }
 
     const token = jwt.sign(
       {
-        id: user.id,
+        id: user._id,
+        name: user.name,
         role: user.role,
         base: user.base
       },
@@ -79,12 +92,17 @@ exports.login = async (req, res) => {
 
     res.json({
       message: "Login successful",
-      token
+      token,
+      user: {
+        name: user.name,
+        role: user.role,
+        base: user.base ? user.base.name : null
+      }
     });
 
   } catch (error) {
-    console.log("in login control",error)
-    res.status(500).json({ message: "Serverr error" });
+    console.log("in login control", error);
+    res.status(500).json({ message: "Server error" });
   }
 };
 

@@ -1,22 +1,23 @@
 .dashboard-container{
   padding:40px;
-  background:#f3f4f6;
+  background:white;
   min-height:100vh;
+  top:10px;
+  margin-left:210px;   /* same as sidebar width */
+  margin-top:60px;     /* if navbar exists */
 }
 
-.dashboard-title{
-  text-align:center;
-  font-size:32px;
-  margin-bottom:40px;
-  color:#1f2937;
+img {
+  top:10px;
+  width:120px;
+  height:auto;
 }
 
-/* Center the grid */
 .dashboard-grid{
   display:grid;
-  grid-template-columns: repeat(2, 250px); /* 2 cards per row */
+  grid-template-columns: repeat(3, 250px); 
   gap:25px;
-  justify-content:center; /* center horizontally */
+  justify-content:center; 
 }
 
 .card{
@@ -80,5 +81,64 @@ cursor:pointer;
   justify-content: center;
   align-items: center;
   z-index: 1000;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+
+  .dashboard-container{
+    padding:30px;
+    margin-left:180px;
+  }
+
+  .dashboard-grid{
+    grid-template-columns: repeat(2, 250px);
+  }
+
+   .sidebar{
+    width:180px;
+  }
+
+
+
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+
+  .sidebar{
+    width: 150px;
+  }
+
+  .dashboard-container{
+    margin-left: 150px;
+    padding:20px;
+  }
+
+  .dashboard-grid{
+    grid-template-columns: repeat(1, 250px);
+  }
+
+  img{
+    width:90px;
+  }
+
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+
+  .dashboard-grid{
+    grid-template-columns: 1fr;
+  }
+
+  .card{
+    padding:20px;
+  }
+
+  .card p{
+    font-size:22px;
+  }
+
 }
 

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { getData, postData } from "../services/api";
 import "./Expenditure.css"
+import logo from "../src/assets/mili.png";
 
 export default function Expenditure(){
 
@@ -42,8 +43,9 @@ quantity:""
 return(
 
 <div className="expenditure-container">
+  <img src = {logo} alt ="logo" />
 
-    <h2 className="expenditure-title">Expenditure</h2>
+   
 
     <div className="expenditure-form">
 

@@ -1,25 +1,31 @@
 import { useEffect, useState } from "react";
 import { getDashboard } from "../services/api";
-import FilterBar from "../components/FilterBar";
 import "./dashboard.css";
+import logo from "../src/assets/mili.png";
 
 export default function Dashboard() {
   const [data, setData] = useState({});
-  const [filters, setFilters] = useState({});
   const [popup, setPopup] = useState(false);
   const token = localStorage.getItem("token");
+  const name = localStorage.getItem("name");
+  const role = localStorage.getItem("role");
+  const base = localStorage.getItem("base")
 
   useEffect(() => {
     getDashboard(token).then(setData);
   }, [token]);
 
-  // Helper function to safely compute net movement
   const netMovement =
     (data.purchases || 0) + (data.transferIn || 0) - (data.transferOut || 0);
 
   return (
-    <div>
-      {/* <FilterBar setFilters={setFilters}/> */}
+    <div className="dashboard-container">
+
+      <img src = {logo} alt ="logo" />
+      <h2>Welcome {name}</h2>
+      <p>Role: {role}</p>
+      <p>{base}</p>
+
 
       <div className="dashboard-grid">
         <div className="card">

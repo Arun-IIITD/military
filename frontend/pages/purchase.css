@@ -4,6 +4,11 @@ padding:30px;
 font-family:Arial, sans-serif;
 }
 
+img {
+  width:120px;
+  height:auto;
+}
+
 .purchases-title{
 margin-bottom:20px;
 }
@@ -59,4 +64,72 @@ border-bottom:1px solid #ddd;
 
 .purchase-table tr:hover{
 background:#f3f4f6;
+}
+
+/* Tablet */
+@media (max-width:1024px){
+
+  .purchases-container{
+    margin-left:200px;
+    padding:20px;
+  }
+
+  .purchase-form{
+    flex-wrap:wrap;
+  }
+
+  .purchase-form input{
+    flex:1 1 45%;
+  }
+
+}
+
+/* Mobile */
+@media (max-width:768px){
+
+  .purchases-container{
+    margin-left:160px;
+    padding:15px;
+  }
+
+  img{
+    width:90px;
+  }
+
+  .purchase-form{
+    flex-direction:column;
+  }
+
+  .purchase-form input{
+    width:100%;
+  }
+
+  .purchase-form button{
+    width:100%;
+  }
+
+  .purchase-table{
+    font-size:14px;
+  }
+
+  .purchase-table th,
+  .purchase-table td{
+    padding:8px;
+  }
+
+}
+
+/* Small phones */
+@media (max-width:480px){
+
+  .purchases-container{
+    margin-left:0;
+  }
+
+  .purchase-table{
+    display:block;
+    overflow-x:auto;
+    white-space:nowrap;
+  }
+
 }

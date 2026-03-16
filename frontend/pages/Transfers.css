@@ -4,6 +4,11 @@ padding:30px;
 font-family:Arial, sans-serif;
 }
 
+img {
+  width:120px;
+  height:auto;
+}
+
 .transfers-title{
 margin-bottom:20px;
 }
@@ -59,4 +64,72 @@ border-bottom:1px solid #ddd;
 
 .transfer-table tr:hover{
 background:#f3f4f6;
+}
+
+/* Tablet */
+@media (max-width:1024px){
+
+  .transfers-container{
+    margin-left:200px;
+    padding:20px;
+  }
+
+  .transfer-form{
+    flex-wrap:wrap;
+  }
+
+  .transfer-form input{
+    flex:1 1 45%;
+  }
+
+}
+
+/* Mobile */
+@media (max-width:768px){
+
+  .transfers-container{
+    margin-left:160px;
+    padding:15px;
+  }
+
+  img{
+    width:90px;
+  }
+
+  .transfer-form{
+    flex-direction:column;
+  }
+
+  .transfer-form input{
+    width:100%;
+  }
+
+  .transfer-form button{
+    width:100%;
+  }
+
+  .transfer-table{
+    font-size:14px;
+  }
+
+  .transfer-table th,
+  .transfer-table td{
+    padding:8px;
+  }
+
+}
+
+/* Small phones */
+@media (max-width:480px){
+
+  .transfers-container{
+    margin-left:0;
+  }
+
+  .transfer-table{
+    display:block;
+    overflow-x:auto;
+    white-space:nowrap;
+  }
+
 }

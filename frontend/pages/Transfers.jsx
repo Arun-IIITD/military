@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { getData, postData } from "../services/api";
 import "./Transfers.css";
+import logo from "../src/assets/mili.png";
 
 export default function Transfers(){
 
 const token = localStorage.getItem("token");
-
+const bases = ["Delhi", "Mumbai", "Bangalore", "Hyderabad"];
 const [list,setList] = useState([]);
 const [form,setForm] = useState({
     fromBase: "",
@@ -41,40 +42,51 @@ setForm({
 return(
 
 <div className="transfers-container">
-
-<h2 className="transfers-title">Transfers</h2>
+  <img src = {logo} alt ="logo" />
 
 <div className="transfer-form">
 
-         <select //frombase
-          name="fromBase"
-          placeholder="frombase"
-          value={form.fromBase}
-          onChange={handleChange}
-          className="role-select"
-        >
-          <option value="">Select base</option>
-          <option value="Delhi">Delhi</option>
-          <option value="Mumbai">Mumbai</option>
-          <option value="Bangalore">Bangalore</option>
-          <option value="Hyderabad">Hyderabad</option>
-        </select> 
+        <select
+            name="fromBase"
+            value={form.fromBase}
+            onChange={handleChange}
+            className="role-select"
+          >
+            <option value="">from base</option>
 
+            {bases.map((base) => (
+              <option
+                key={base}
+                value={base}
+                disabled={form.toBase === base}  
+              >
+                {base}
+              </option>
+            ))}
+        </select>
 
-
-        <select //TOBASE
-          name="toBase" //CASE SENTIVE, IF WRONG DOES NOT WORK
-          placeholder="tobase"
+        <select
+          name="toBase"
           value={form.toBase}
           onChange={handleChange}
           className="role-select"
         >
-          <option value="">Select base</option>
-          <option value="Delhi">Delhi</option>
-          <option value="Mumbai">Mumbai</option>
-          <option value="Bangalore">Bangalore</option>
-          <option value="Hyderabad">Hyderabad</option>
-        </select> 
+          <option value="">to base</option>
+
+          {bases.map((base) => (
+            <option
+              key={base}
+              value={base}
+              disabled={form.fromBase === base}   
+            >
+              {base}
+            </option>
+          ))}
+        </select>
+
+
+
+      
 
 
           <select //EQUIPMENT

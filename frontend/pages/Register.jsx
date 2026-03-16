@@ -5,7 +5,6 @@ import "./register.css";
 
 export default function Register() {
   const navigate = useNavigate();
-
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -18,40 +17,46 @@ export default function Register() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    // Validation: base is required for admin and commander
-    if ((form.role === "ADMIN" || form.role === "BASE_COMMANDER") && !form.base) {
-      alert("Base is required for ADMIN or BASE_COMMANDER roles");
-      return;
-    }
+  // Only BASE_COMMANDER must have a base
+  if (form.role === "BASE_COMMANDER" && !form.base) {
+    alert("Base is required for BASE_COMMANDER");
+    return;
+  }
 
-     // For LOGISTICS_OFFICER send base = null
-    // if (form.role === "LOGISTICS_OFFICER") {
-    //   form.base = null;
-    // }
-
-    const sendData = {
-      ...form,
-      base: form.role === "LOGISTICS_OFFICER" ? null : form.base
-    };
-
-
-
-    try {
-      await register(sendData);
-      alert("User registered successfully");
-      navigate("/login");
-    } catch (err) {
-      alert("Registration failed: " + err.response?.data?.message || err.message);
-    }
+  const sendData = {
+    ...form,
+    base: form.role === "BASE_COMMANDER" ? form.base : null
   };
+
+  try {
+    const res = await register(sendData);
+
+    if (!res || !res.token) {
+      throw new Error(res?.message || "Registration failed");
+    }
+
+    alert("Registered successfully");
+
+    localStorage.setItem("token", res.token);
+
+    navigate("/login");
+
+  } catch (err) {
+    const errorMessage =
+      err?.response?.data?.message || err.message || "Registration failed";
+
+    alert(errorMessage);
+  }
+};
 
   return (
     <div className="register-container">
+
       <form className="register-form" onSubmit={handleSubmit}>
-        <h2>Register</h2>
+        <h2>Military Register System</h2>
         <input 
         type="text" 
         name="name" 
@@ -83,24 +88,24 @@ export default function Register() {
           <option value="LOGISTICS_OFFICER">LOGISTICS_OFFICER</option>
         </select>
 
-        {/* Base field only for ADMIN and BASE_COMMANDER */}
-        {(form.role === "ADMIN" || form.role === "BASE_COMMANDER") && (
+     
 
           <select
           name="base"
           value={form.base}
           onChange={handleChange}
           className="role-select"
+          disabled={form.role !== "BASE_COMMANDER"}
         >
           <option value="">Select base</option>
           <option value="Delhi">Delhi</option>
           <option value="Mumbai">Mumbai</option>
           <option value="Bangalore">Bangalore</option>
-          <option value="Hyderabad">Hyderaba</option>
+          <option value="Hyderabad">Hyderabad</option>
         </select>
 
 
-        )}
+        
 
         <button type="submit">Register</button>
 

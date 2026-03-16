@@ -4,6 +4,11 @@ padding:30px;
 font-family:Arial, sans-serif;
 }
 
+img {
+  width:120px;
+  height:auto;
+}
+
 .assignments-title{
 margin-bottom:20px;
 }
@@ -59,4 +64,74 @@ border-bottom:1px solid #ddd;
 
 .assignment-table tr:hover{
 background:#f3f4f6;
+}
+
+/* Tablet */
+@media (max-width:1024px){
+
+  .assignments-container{
+    margin-left:200px;
+    padding:20px;
+  }
+
+  .assignment-form{
+    flex-wrap:wrap;
+  }
+
+  .assignment-form input{
+    flex:1 1 45%;
+  }
+
+}
+
+
+/* Mobile */
+@media (max-width:768px){
+
+  .assignments-container{
+    margin-left:160px;
+    padding:15px;
+  }
+
+  img{
+    width:90px;
+  }
+
+  .assignment-form{
+    flex-direction:column;
+  }
+
+  .assignment-form input{
+    width:100%;
+  }
+
+  .assignment-form button{
+    width:100%;
+  }
+
+  .assignment-table{
+    font-size:14px;
+  }
+
+  .assignment-table th,
+  .assignment-table td{
+    padding:8px;
+  }
+
+}
+
+
+/* Small phones */
+@media (max-width:480px){
+
+  .assignments-container{
+    margin-left:0;
+  }
+
+  .assignment-table{
+    display:block;
+    overflow-x:auto;
+    white-space:nowrap;
+  }
+
 }

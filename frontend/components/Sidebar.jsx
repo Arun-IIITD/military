@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import "./Sidebar.css";
-
+import logo from "../src/assets/army.png";
 export default function Sidebar(){
 
 
@@ -8,8 +8,8 @@ export default function Sidebar(){
 return(
 
         <div className="sidebar">
-
-        <h2>Assets</h2>
+        <img src = {logo} alt ="logo" />
+        
 
         <NavLink to="/dashboard">Dashboard</NavLink>
         <NavLink to="/purchases">Purchases</NavLink>

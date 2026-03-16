@@ -66,11 +66,6 @@ const transferOut = baseId
       assignedTotal -
       expendedTotal;
     
-    console.log("Purchases:", purchaseTotal);
-console.log("Transfer In:", transferInTotal);
-console.log("Transfer Out:", transferOutTotal);
-console.log("Assigned:", assignedTotal);
-console.log("Expended:", expendedTotal);
 
     res.json({
       openingBalance,

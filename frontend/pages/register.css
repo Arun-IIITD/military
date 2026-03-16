@@ -6,6 +6,8 @@
   min-height: 100vh;
   background-color: #f3f4f6;
   padding: 1rem;
+  background: url('../src/assets/mili.png') no-repeat center top;
+  background-size: 220px;
 }
 
 /* Form Card */
