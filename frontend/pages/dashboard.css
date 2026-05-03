@@ -83,6 +83,31 @@ cursor:pointer;
   z-index: 1000;
 }
 
+.footer {
+  margin-top: 40px;
+  padding: 20px;
+  text-align: center;
+  border-top: 1px solid #ccc;
+  color: #555;
+}
+
+.footer-links {
+  margin-top: 8px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: #0077b5;
+  font-weight: 500;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
 /* Tablet */
 @media (max-width: 1024px) {
 

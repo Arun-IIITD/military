@@ -1,0 +1,18 @@
+/* Full page layout */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Main area (sidebar + content) */
+.main-layout {
+  display: flex;
+  flex: 1; /* pushes footer down */
+}
+
+/* Content area */
+.content {
+  flex: 1;
+  padding: 20px;
+}

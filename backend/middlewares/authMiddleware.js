@@ -12,7 +12,7 @@ const authMiddleware = (req, res, next) => {
   try {
     const decoded = jwt.verify(token, process.env.SECRET_KEY);
 
-    // Use the exact field from your token
+    // Use the exact field from your tokens
     //console.log("user_id", decoded.id);
 
     req.user = {

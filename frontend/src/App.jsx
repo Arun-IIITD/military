@@ -8,51 +8,48 @@ import Assignments from "../pages/Assignments"
 import Expenditure from "../pages/Expenditure"
 import Sidebar from "../components/Sidebar"
 import Navbar from "../components/Navbar"
+import Footer from "../components/Footer"
+import "./App.css"
 
-export default function App(){
+export default function App() {
+  const token = localStorage.getItem("token");
 
-const token=localStorage.getItem("token")
+  if (!token) {
+    return (
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+      </BrowserRouter>
+    );
+  }
 
-if(!token){
-
-    return(
+  return (
     <BrowserRouter>
-    <Routes>
+      <div className="app-container">
+        
+        <Navbar />
 
-        <Route path="/" element={<Login/>}/>
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/register" element={<Register/>}/>
-        {/* <Route path="*" element={<Login/>}/> */}
-    </Routes>
+        <div className="main-layout">
+          <Sidebar />
+
+          <div className="content">
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/purchases" element={<Purchases />} />
+              <Route path="/transfers" element={<Transfers />} />
+              <Route path="/assignments" element={<Assignments />} />
+              <Route path="/expenditure" element={<Expenditure />} />
+            </Routes>
+          </div>
+        </div>
+
+        <Footer />
+
+      </div>
     </BrowserRouter>
-    )
-}
-
-return(
-    <BrowserRouter>
-
-        <Navbar/>
-
-            <div className="layout">
-
-                <Sidebar/>
-
-                    <div className="content">
-
-                    <Routes>
-                     <Route path="/" element={<Dashboard/>}/>
-                    <Route path="/dashboard" element={<Dashboard/>}/>
-                    <Route path="/purchases" element={<Purchases/>}/>
-                    <Route path="/transfers" element={<Transfers/>}/>
-                    <Route path="/assignments" element={<Assignments/>}/>
-                    <Route path="/expenditure" element={<Expenditure/>}/>
-                   
-                    </Routes>
-
-                    </div>
-
-            </div>
-
-    </BrowserRouter>
-    )
+  );
 }
